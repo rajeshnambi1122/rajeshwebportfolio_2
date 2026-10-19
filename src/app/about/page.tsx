@@ -1,3 +1,5 @@
+import BookShelf from "@/components/BookShelf";
+
 export default function About() {
   return (
     <main className="main-content">
@@ -29,7 +31,7 @@ export default function About() {
               <div className="timeline-content">
                 <div className="timeline-header">
                   <div className="timeline-title" style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                    <img src="https://www.aditanarcollege.com/fav_icon.png" alt="Aditanar" width="48" height="48" style={{ objectFit: 'contain', background: 'white', borderRadius: '6px', padding: '2px', flexShrink: 0, marginTop: '2px' }} />
+                    <img src="https://www.google.com/s2/favicons?domain=aditanarcollege.com&sz=64" alt="Aditanar" width="48" height="48" style={{ objectFit: 'contain', background: 'white', borderRadius: '6px', padding: '4px', flexShrink: 0, marginTop: '2px' }} />
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                       <strong style={{ lineHeight: '1.2' }}>Bachelors in Economics</strong>
                       <span className="timeline-company" style={{ marginLeft: 0 }}>Aditanar College of Arts & Science</span>
@@ -49,24 +51,27 @@ export default function About() {
             I am a self-taught developer and have actively learned from various online platforms and amazing instructors. Here are some of my primary resources:
           </p>
           <div className="tech-stack" style={{ gap: '1rem', flexWrap: 'wrap' }}>
-            <span className="tech-icon" title="Angela Yu (Udemy)" style={{ width: 'auto', padding: '0 1rem', borderRadius: '20px', gap: '8px' }}>
+            <a href="https://www.udemy.com/course/the-complete-web-development-bootcamp/" target="_blank" rel="noreferrer" className="tech-icon" title="Angela Yu (Udemy)" style={{ width: 'auto', padding: '0 1rem', borderRadius: '20px', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
               <img src="https://cdn.simpleicons.org/udemy" alt="Udemy" width="16" height="16" />
               Angela Yu (Udemy)
-            </span>
-            <span className="tech-icon" title="YouTube" style={{ width: 'auto', padding: '0 1rem', borderRadius: '20px', gap: '8px' }}>
+            </a>
+            <a href="https://www.youtube.com/@DaveGrayTeachesCode" target="_blank" rel="noreferrer" className="tech-icon" title="Dave Gray (YouTube)" style={{ width: 'auto', padding: '0 1rem', borderRadius: '20px', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
               <img src="https://cdn.simpleicons.org/youtube/ff0000" alt="YouTube" width="16" height="16" />
-              Dave Gray (Youtube)
-            </span>
-            <span className="tech-icon" title="Scrimba" style={{ width: 'auto', padding: '0 1rem', borderRadius: '20px', gap: '8px' }}>
+              Dave Gray (YouTube)
+            </a>
+            <a href="https://scrimba.com" target="_blank" rel="noreferrer" className="tech-icon" title="Scrimba" style={{ width: 'auto', padding: '0 1rem', borderRadius: '20px', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdSEopIcanqlIol-X2h2QztG4f4sMnlezTzcrrNt2pZA&s=10" alt="Scrimba" width="16" height="16" style={{ borderRadius: '50%' }} />
               Scrimba
-            </span>
-            <span className="tech-icon" title="Boot.dev" style={{ width: 'auto', padding: '0 1rem', borderRadius: '20px', gap: '8px' }}>
+            </a>
+            <a href="https://www.boot.dev" target="_blank" rel="noreferrer" className="tech-icon" title="Boot.dev" style={{ width: 'auto', padding: '0 1rem', borderRadius: '20px', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
               <img src="https://github.com/bootdotdev.png" alt="Boot.dev" width="16" height="16" style={{ borderRadius: '50%' }} />
               Boot.dev
-            </span>
+            </a>
           </div>
         </div>
+
+        <BookShelf />
+
       </section>
     </main>
   );
