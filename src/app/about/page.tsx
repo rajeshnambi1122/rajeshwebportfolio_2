@@ -1,4 +1,5 @@
 import BookShelf from "@/components/BookShelf";
+import SpotifyStats from "@/components/SpotifyStats";
 
 export default function About() {
   return (
@@ -45,7 +46,7 @@ export default function About() {
           </div>
         </div>
 
-        <div>
+        <div style={{ marginBottom: '4rem' }}>
           <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem', color: 'var(--text-primary)' }}>Learning Resources</h3>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
             I am a self-taught developer and have actively learned from various online platforms and amazing instructors. Here are some of my primary resources:
@@ -69,7 +70,7 @@ export default function About() {
             </a>
           </div>
         </div>
-
+        <SpotifyStats />
         <BookShelf />
 
       </section>

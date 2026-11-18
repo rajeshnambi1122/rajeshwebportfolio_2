@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Image from "next/image";
-import Stats from "@/components/Stats";
+import GithubStats from "@/components/GithubStats";
 import StatsSkeleton from "@/components/StatsSkeleton";
 import Link from "next/link";
 
@@ -99,7 +99,7 @@ export default function Home() {
           </section>
 
           <Suspense fallback={<StatsSkeleton />}>
-            <Stats />
+            <GithubStats />
           </Suspense>
         </section>
 
@@ -133,7 +133,9 @@ export default function Home() {
             </div>
 
             <div className="project-card">
-              <div className="project-image safari-bg"></div>
+              <div className="project-image sandys-design-bg" style={{ position: 'relative', overflow: 'hidden' }}>
+                <img src="/Safari.png" alt="Sandy's Market" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
               <div className="project-content">
                 <div className="project-title-row">
                   <h3>Safari Packaging</h3>

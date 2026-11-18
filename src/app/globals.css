@@ -717,33 +717,175 @@ a {
 /* Cabinet & Wooden Shelf */
 .bookshelf-cabinet {
   position: relative;
-  background: linear-gradient(180deg, rgba(20, 14, 9, 0.95) 0%, rgba(32, 22, 14, 0.98) 100%);
-  border-radius: 8px 8px 0 0;
-  padding: 1.75rem 1.75rem 0;
+  background: linear-gradient(180deg, rgba(22, 16, 11, 0.96) 0%, rgba(35, 25, 17, 0.98) 100%);
+  border-radius: 10px 10px 0 0;
+  padding: 1.75rem 1.5rem 0;
   box-shadow:
-    inset 0 12px 30px rgba(0, 0, 0, 0.7),
-    0 4px 16px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  overflow-x: auto;
+  inset 0 14px 32px rgba(0, 0, 0, 0.75),
+  0 4px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
 }
 
 .bookshelf-row {
   display: flex;
   align-items: flex-end;
-  gap: 10px;
-  min-height: 255px;
-  padding-bottom: 0;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 245px;
+  padding: 0.5rem 0.25rem 0;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.bookshelf-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual Book Front Cover Card */
+.shelf-book-cover-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition: transform 0.28s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+.shelf-book-cover-card:hover {
+  transform: translateY(-10px);
+}
+
+.shelf-book-cover-card.is-selected {
+  transform: translateY(-12px);
+}
+
+/* 3D Book Object Container */
+.book-3d-wrapper {
+  position: relative;
+  width: 112px;
+  height: 168px;
+  border-radius: 3px 6px 6px 3px;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.55),
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    inset -1px 0 2px rgba(255, 255, 255, 0.15);
+  transition: box-shadow 0.28s ease;
+}
+
+.shelf-book-cover-card:hover .book-3d-wrapper {
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(255, 255, 255, 0.12),
+    inset -1px 0 2px rgba(255, 255, 255, 0.25);
+}
+
+.shelf-book-cover-card.is-selected .book-3d-wrapper {
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.8),
+    0 0 0 2px var(--text-primary),
+    0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Real Front Cover Image */
+.book-front-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Spine Crease / Hinge Shadow along the left edge */
+.book-left-crease {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 12px;
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(255, 255, 255, 0.2) 28%,
+      rgba(0, 0, 0, 0.15) 55%,
+      transparent 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Right Edge Page Stack Trim */
+.book-page-trim {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      #eee4d0 60%,
+      #d8ccb6 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Subtle Front Glare */
+.book-cover-glare {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      transparent 50%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Subtle text under cover */
+.book-cover-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 0.6rem;
+  width: 112px;
+  gap: 2px;
+}
+
+.book-label-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.book-label-author {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 /* Wood Shelf Plank */
 .shelf-plank {
-  height: 20px;
-  margin: 0 -1.75rem;
-  background: linear-gradient(180deg, #87552e 0%, #5a3518 55%, #381f0d 100%);
+  height: 22px;
+  margin: 0 -1.5rem;
+  background: linear-gradient(180deg, #8c5830 0%, #5e371a 55%, #3b210e 100%);
   position: relative;
-  border-radius: 0 0 6px 6px;
-  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.6);
-  border-top: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 10px 28px -2px rgba(0, 0, 0, 0.65);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.3);
 }
 
 .shelf-wood-highlight {
@@ -752,7 +894,7 @@ a {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 220, 180, 0.3) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 225, 190, 0.35) 50%, transparent 100%);
 }
 
 .shelf-plank-edge {
@@ -761,285 +903,7 @@ a {
   left: 0;
   right: 0;
   height: 4px;
-  background: rgba(0, 0, 0, 0.35);
-}
-
-/* Individual Book on Shelf */
-.shelf-book-item {
-  width: var(--spine-width, 40px);
-  height: var(--book-height, 210px);
-  position: relative;
-  cursor: pointer;
-  flex-shrink: 0;
-  border-radius: 3px 4px 4px 2px;
-  user-select: none;
-  outline: none;
-  transition:
-    width 0.42s cubic-bezier(0.34, 1.4, 0.64, 1),
-    height 0.35s ease,
-    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.25s ease;
-  box-shadow:
-    2px 4px 10px rgba(0, 0, 0, 0.5),
-    inset -1px 0 2px rgba(255, 255, 255, 0.1);
-}
-
-.shelf-book-item:hover {
-  transform: translateY(-14px);
-  box-shadow:
-    4px 16px 26px rgba(0, 0, 0, 0.65),
-    0 0 12px rgba(255, 255, 255, 0.1);
-}
-
-.shelf-book-item.is-open {
-  width: 155px;
-  height: 235px;
-  transform: translateY(-18px);
-  box-shadow:
-    8px 22px 42px rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(255, 255, 255, 0.08);
-  z-index: 10;
-}
-
-/* ── Spine Face ────────────────────────────────────────── */
-.book-spine {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 3px 6px;
-  border-radius: 3px 4px 4px 2px;
-  overflow: hidden;
-  z-index: 2;
-  transition: opacity 0.2s ease;
-}
-
-.shelf-book-item.is-open .book-spine {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Cylindrical Spine Curvature Lighting (Bend of the book) */
-.spine-lighting {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 6;
-  box-shadow:
-    inset 2.5px 0 3px rgba(0, 0, 0, 0.4),
-    inset -2.5px 0 3px rgba(0, 0, 0, 0.35);
-}
-
-/* Spine Top Headband / Accents */
-.spine-headband {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 14px;
-  z-index: 3;
-}
-
-.spine-dots {
-  display: flex;
-  gap: 3px;
-}
-
-.spine-dots span {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-}
-
-.spine-single-line {
-  width: 75%;
-  height: 2px;
-  border-radius: 1px;
-}
-
-.spine-double-line {
-  width: 75%;
-  height: 5px;
-  border-top: 1.5px solid;
-  border-bottom: 1.5px solid;
-}
-
-.spine-star {
-  font-size: 0.65rem;
-  line-height: 1;
-}
-
-.spine-color-bar {
-  width: 80%;
-  height: 4px;
-  border-radius: 1px;
-}
-
-/* Spine Body - Vertical Typography */
-.spine-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 6px 0;
-  z-index: 3;
-  width: 100%;
-  overflow: hidden;
-}
-
-.spine-title-text {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  white-space: nowrap;
-  font-size: 0.62rem;
-  font-weight: 700;
-  line-height: 1;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
-  margin-top: 4px;
-  letter-spacing: 0.06em;
-}
-
-.spine-author-text {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  white-space: nowrap;
-  font-size: 0.52rem;
-  font-weight: 600;
-  line-height: 1;
-  margin-bottom: 4px;
-  letter-spacing: 0.05em;
-  opacity: 0.9;
-}
-
-/* Atomic Habits Special Spine Styling */
-.spine-title-custom {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  white-space: nowrap;
-  font-weight: 900;
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
-  margin-top: 4px;
-}
-
-.ah-atomic {
-  color: #1a1a1a;
-}
-
-.ah-habits {
-  color: #e45a1e;
-}
-
-/* Spine Foot / Publisher Colophon */
-.spine-foot {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  width: 100%;
-  min-height: 14px;
-  z-index: 3;
-}
-
-.spine-publisher-badge {
-  font-size: 0.5rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  padding: 1px 4px;
-  border-radius: 2px;
-  line-height: 1.1;
-  border: 1px solid transparent;
-}
-
-/* ── Opened Book Cover Face ──────────────────────────────── */
-.book-opened-cover {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.3s ease 0.15s;
-  border-radius: 2px 5px 5px 2px;
-  overflow: hidden;
-  background: #111;
-  border-right: 4px solid #f6f0dd;
-}
-
-.shelf-book-item.is-open .book-opened-cover {
-  opacity: 1;
-}
-
-/* Inner Spine Hinge Shadow */
-.cover-spine-crease {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 14px;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 65%, transparent 100%);
-  z-index: 5;
-  pointer-events: none;
-}
-
-.book-front-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Fallback Designed Cover */
-.book-front-fallback {
-  width: 100%;
-  height: 100%;
-  padding: 1rem 0.75rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.fallback-tag {
-  font-size: 0.5rem;
-  letter-spacing: 0.15em;
-  font-weight: 800;
-  opacity: 0.7;
-}
-
-.fallback-title {
-  font-size: 0.85rem;
-  font-weight: 800;
-  margin: 0.5rem 0;
-  line-height: 1.2;
-}
-
-.fallback-line {
-  width: 28px;
-  height: 2px;
-  margin: 0.4rem auto;
-}
-
-.fallback-author {
-  font-size: 0.65rem;
-  font-weight: 600;
-}
-
-/* Ribbon Bookmark */
-.book-ribbon {
-  position: absolute;
-  bottom: -6px;
-  right: 18px;
-  width: 8px;
-  height: 16px;
-  border-radius: 0 0 2px 2px;
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
-  z-index: 4;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* ── Interactive Book Details Drawer ─────────────────────── */
@@ -1058,6 +922,7 @@ a {
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
